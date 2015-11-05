@@ -1,4 +1,5 @@
 require 'gosu'
+require 'Game'
 #require the other files as needed here!
 
 #the main game class
