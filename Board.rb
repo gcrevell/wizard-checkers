@@ -6,14 +6,16 @@ require 'gosu'
 
 class Board
   #Create board properties
-  @@b_width = 8
-  @@b_height = 8
+  @@b_width
+  @@b_height
   @@pieces = Array.new
   @@captured = Array.new
   
   
   #constructor
-  def new()
+  def new(width=8, height=8)
+    @@b_width = width
+    @@b_height = height
     puts "Creating new Board!"
   end
   
@@ -22,7 +24,12 @@ class Board
     print "I'm drawing!"
   end
   
-  #adds piece to pieces hash
+  #do initial population of pieces array
+  def populate()
+    #initialize pieces, set color and location, put in pieces array
+  end
+  
+  #adds piece to pieces to piece list
   def add_piece(piece)
     @@pieces << piece
   end
@@ -42,7 +49,7 @@ class Board
   
   #returns uncaptured pieces
   def get_pieces()
-    return @@pieces    
+    return @@pieces, @@captured
   end
   
 end
