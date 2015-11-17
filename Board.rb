@@ -10,11 +10,17 @@ class Board
   @@b_height = 8
   @@pieces = Array.new
   @@captured = Array.new
+  @@locations = Array.new(8, Array.new(8))
   
   
   #constructor
   def new()
     puts "Creating new Board!"
+	for i in 0..7
+		for j in 0..7
+			locations[i][j] = Location.new(i, j)
+		end
+	end
   end
   
   #draws the board
