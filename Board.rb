@@ -6,16 +6,15 @@ require 'gosu'
 
 class Board
   #Create board properties
-  @@b_width
-  @@b_height
+  @@board_dims = Array.new(2)
   @@pieces = Array.new
   @@captured = Array.new
   
   
   #constructor
   def new(width=8, height=8)
-    @@b_width = width
-    @@b_height = height
+    @@board_dims[0] = width
+    @@board_dims[1] = height
     puts "Creating new Board!"
   end
   
