@@ -1,6 +1,6 @@
 require 'gosu'
-require 'Board'
-require 'Player'
+require_relative 'Board'
+require_relative 'Player'
 
 class Game
 	#called at the very start

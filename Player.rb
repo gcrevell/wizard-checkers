@@ -1,3 +1,6 @@
+require 'gosu'
+require_relative 'game'
+require_relative 'board'
 
 class Player
 	
