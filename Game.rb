@@ -5,7 +5,10 @@ require_relative 'Player'
 class Game
 	#called at the very start
 	def initialize
-		@board = Board.new
+		#these two will be replaced by the player objects in due time
+		@player = nil
+		@computer = nil
+		@board = Board.new(8, 8, @player, @computer)
 	end
 
 	#called once per frame in a loop, manages game logic

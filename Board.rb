@@ -33,6 +33,7 @@ class Board
   #draws the board
   def draw()
     print "I'm drawing!"
+	#loop through the pieces in the grid and draw them at their positions (x*32, y*32)
   end
   
   #do initial population of pieces array
