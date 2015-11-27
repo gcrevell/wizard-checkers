@@ -5,14 +5,14 @@ require 'gosu'
 #Piece classs, establishes and tracks piece properties
 
 class Piece
-  #create piece properties
-  @owner
-  @position = Array.new(2)
-  @king = false
-  @captured = false
   
   #constructor
-  def new(posx=0, posy=0)
+  def initialize (posx=0, posy=0, owner=nil)
+    #define properties that exist
+    @owner = owner
+    @position = Array.new(2)
+    @king = false
+    @captured = false
     #set piece position
     @position[0] = posx
     @position[1] = posy

@@ -1,27 +1,33 @@
 require 'gosu'
+require_relative 'Location'
 
 #require other files as needed
 
 #Board class.  Establishes board properties, getters and setters.
 
 class Board
-  #Create board properties
-  @board_dims = Array.new(2)
-  @pieces = Array.new
-  @captured = Array.new
-  @locations = Array.new(8, Array.new(8))
-  
-  
   #constructor
-  def new(width=8, height=8)
+  def initialize(width=8, height=8, player=nil, computer=nil)
+    #define the attributes
+    @board_dims = Array.new(2)
+    @pieces = Array.new
+    @captured = Array.new
+    @locations = Array.new(width)
+	#load graphics!
+	@piece_icons = Gosu::Image::load_tiles("checkers.bmp", 32, 32)
+	#@board_back = Gosu::Image.new("board.bmp")
+    #set board dimensions
     @board_dims[0] = width
     @board_dims[1] = height
     puts "Creating new Board!"
-	for i in 0..7
-		for j in 0..7
-			locations[i][j] = Location.new(i, j)
+	#populate the locations
+	for i in 0..width
+		@locations[i] = Array.new(height)
+		for j in 0..height
+			@locations[i][j] = Location.new(i, j)
 		end
 	end
+	populate(player, computer)
   end
   
   #draws the board
@@ -30,8 +36,8 @@ class Board
   end
   
   #do initial population of pieces array
-  def populate()
-    #initialize pieces, set color and location, put in pieces array
+  def populate(player=nil, computer=nil)
+    #initialize pieces, set color, location, and owner put in pieces array
   end
   
   #adds piece to pieces to piece list
