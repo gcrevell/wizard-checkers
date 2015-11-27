@@ -6,16 +6,16 @@ require 'gosu'
 
 class Board
   #Create board properties
-  @@board_dims = Array.new(2)
-  @@pieces = Array.new
-  @@captured = Array.new
-  @@locations = Array.new(8, Array.new(8))
+  @board_dims = Array.new(2)
+  @pieces = Array.new
+  @captured = Array.new
+  @locations = Array.new(8, Array.new(8))
   
   
   #constructor
   def new(width=8, height=8)
-    @@board_dims[0] = width
-    @@board_dims[1] = height
+    @board_dims[0] = width
+    @board_dims[1] = height
     puts "Creating new Board!"
 	for i in 0..7
 		for j in 0..7
@@ -36,7 +36,7 @@ class Board
   
   #adds piece to pieces to piece list
   def add_piece(piece)
-    @@pieces << piece
+    @pieces << piece
   end
   
   #checks position of a given piece
@@ -47,14 +47,14 @@ class Board
   #captures piece
   def caputre(piece)
     #add piece to captured list
-    @@captured << piece
+    @captured << piece
     #remove piece from playable pieces
-    @@pieces.delete(piece)    
+    @pieces.delete(piece)    
   end
   
   #returns uncaptured pieces
   def get_pieces()
-    return @@pieces, @@captured
+    return @pieces, @captured
   end
   
 end
