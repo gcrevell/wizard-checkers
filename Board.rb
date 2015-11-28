@@ -14,8 +14,8 @@ class Board
     @captured = Array.new
     @locations = Array.new(width)
 	#load graphics!
-	@piece_icons = Gosu::Image::load_tiles("checkers.bmp", 32, 32)
-	#@board_back = Gosu::Image.new("board.bmp")
+	@piece_icons = Gosu::Image::load_tiles("checkers.bmp", 48, 48)
+	@board_back = Gosu::Image.new("checkerboard.bmp") #8x8 of 48x48 tiles
     #set board dimensions
     @board_dims[0] = width
     @board_dims[1] = height
@@ -33,7 +33,8 @@ class Board
   #draws the board
   def draw()
     print "I'm drawing!"
-	#loop through the pieces in the grid and draw them at their positions (x*32, y*32)
+	#draw the board at whatever centered position
+	#loop through the pieces in the grid and draw them at their positions (x*48, y*48), offset from top-left of board sprite
   end
   
   #do initial population of pieces array
