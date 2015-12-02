@@ -30,7 +30,7 @@ class Piece
   
   #retrieve the position of the piece
   def get_pos()
-    return @@position
+    return @position
   end
   
   #change the position of the piece
@@ -57,5 +57,17 @@ class Piece
   #change the capture status
   def change_capture(capture_status)
     @capture = capture_status
+  end
+  
+  #function determines the frame number from kingship and color
+  def get_frame()
+    frame = 0
+    if is_king
+      frame += 1
+    end
+    if @owner == "black"
+      frame += 2
+    end
+  return frame
   end
 end
