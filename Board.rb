@@ -73,12 +73,12 @@ class Board
   end
   
   #checks position of a given piece
-  def check_pos()
+  def check_pos(piece)
     
   end
   
   #captures piece
-  def caputre(piece)
+  def capture(piece)
     #add piece to captured list
     @captured << piece
     #remove piece from playable pieces
@@ -87,7 +87,16 @@ class Board
   
   #returns uncaptured pieces
   def get_pieces()
-    return @pieces, @captured
+    return @pieces
+  end
+  
+  #returns captured pieces
+  def get_captured()
+    return @captured
+  end
+  
+  def get_pieces_by_color(color)
+    #set up a filter to return only pieces that match the specified owner
   end
   
 end
