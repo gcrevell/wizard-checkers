@@ -20,6 +20,11 @@ class Player
 		
 	end
 
+	#return true if the move can be made
+	def valid_move?(piece, location)
+		
+	end
+
 	#get the list of pieces in your color
 	def my_pieces()
 		return @board.get_pieces_by_color(@color)
