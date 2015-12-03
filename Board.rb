@@ -19,6 +19,7 @@ class Board
 	#load graphics!
 	@piece_icon = Gosu::Image::load_tiles("checkers.bmp", 48, 48)
 	@board_back = Gosu::Image.new("checkerboard.bmp") #8x8 of 48x48 tiles
+	@table_back = Gosu::Image.new("table.bmp") #a 640x480 wood texture
     #set board dimensions
     @board_dims[0] = width
     @board_dims[1] = height
@@ -35,6 +36,8 @@ class Board
   
   #draws the board
   def draw()
+	#draw the table background
+	@table_back.draw(0, 0, 0)
 	#draw the board at its specified position
 	@board_back.draw(@left_edge, @top_edge, 1)
 	#loop through the pieces in the grid and draw them at their positions (x*48, y*48), offset from top-left of board sprite
