@@ -120,12 +120,17 @@ class Board
     return @captured
   end
   
-  def get_pieces_by_color(color)
-    #set up a filter to return only pieces that match the specified 
+  def get_pieces_by_owner(color)
+    #set up a filter to return only pieces that match the specified
+    @pieces_by_owner = Array.new
+    
     for p in @pieces
-      #code
+      if p.owner == color
+        @owner << p
+      end
     end
     
+    return @pieces_by_owner
   end
   
 end
