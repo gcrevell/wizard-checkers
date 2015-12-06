@@ -123,15 +123,6 @@ class Board
   
   def get_pieces_by_owner(color)
     #set up a filter to return only pieces that match the specified
-   
-   
-   # @pieces_by_owner = Array.new
-    
-   # for p in @pieces
-   #   if p.owner == color
-   #     @owner << p
-   #   end
-   # end
     
     return @pieces.select{owner == color}
   end
