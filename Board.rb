@@ -65,6 +65,10 @@ class Board
 	end
   end
   
+  def dimensions()
+    @board_dims
+  end
+  
   #do initial population of pieces array
   def populate()
     #create the black piece along the top
