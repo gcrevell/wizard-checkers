@@ -36,5 +36,6 @@ class Game
 	def draw
 		@board.draw
 		#draw player scoring or something here?
+		@player.draw
 	end
 end
