@@ -140,5 +140,10 @@ class Board
       
   end
   
+  #returns the icon from a piece at a given location
+  def get_piece_icon(piece)
+    
+    return @piece_icon[piece.get_frame]
+  end
   
 end
