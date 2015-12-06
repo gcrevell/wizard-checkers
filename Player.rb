@@ -24,9 +24,14 @@ class Player
 			if @grabbed != nil and @grabbed.get_owner != @color
 				@grabbed = nil
 			end
-			puts @grabbed
+			puts "nil" if @grabbed == nil
+			puts @grabbed unless @grabbed == nil
+			puts mouse_pos.x
+			puts mouse_pos.y
+			
 			when "release"
 			#drop the piece, attempt to make a move
+			puts valid_move?(@grabbed, mouse_pos)
 			make_move(@grabbed, mouse_pos)
 			@grabbed = nil
 		end
@@ -148,7 +153,7 @@ class Player
 			return false
 		end
 		
-		if piece.get_owner() == @color
+		if piece.get_owner() != @color
 			return false
 		end
 		
@@ -156,13 +161,13 @@ class Player
 			return false
 		end
 		
-		if location.x < 0 || location.x >= @board.width || location.y < 0 || location.y >= @board.height
+		if location.x < 0 || location.x >= @board.dimensions[0] || location.y < 0 || location.y >= @board.dimensions[1]
 			return false
 		end
 		
-		if (@color == "red") && (location.y > piece.get_pos.y) && (piece.king == false)
+		if (@color == "red") && (location.y > piece.get_pos.y) && (piece.is_king == false)
 			return false
-			elsif (location.y < piece.get_pos.y) && (piece.king == false)
+		elsif (location.y < piece.get_pos.y) && (piece.is_king == false)
 			return false
 		end
 		
@@ -181,7 +186,7 @@ class Player
 			mouse_pos = mouse_over_position()
 			fade_color = Gosu::Color.argb(192, 255, 255, 255) #75% opacity
 			fade_color = Gosu::Color.argb(128, 255, 255, 255) unless valid_move?(@grabbed, mouse_pos)
-			@board.get_piece_icon(@grabbed).draw(mouse_pos.x*48-6, mouse_pos.y*48-12, 3, fade_color)
+			@board.get_piece_icon(@grabbed).draw(@board.left_edge+mouse_pos.x*48, @board.top_edge+mouse_pos.y*48-4, 3, 1, 1, fade_color)
 		end
 	end
 end
