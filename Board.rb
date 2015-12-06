@@ -105,8 +105,14 @@ class Board
   
   #return the piece at a specified location, or nil if there isn't one
   def piece_at(location)
-    #how does it find the piece? somehow! It just need to be able to do so
     
+    for p in @pieces
+      if ((p.get_pos.x == location.x) && (p.get_pos.y == location.y))
+        return p
+      end
+    end
+    
+    return nil
     
   end
   
