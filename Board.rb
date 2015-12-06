@@ -12,6 +12,8 @@ class Board
     #define the attributes
     @left_edge = (640-48*width)/2 #(window width - (board cells * cell width))/2
     @top_edge = (480-48*height)/2 #(window height - (board cells * cell height))/2
+    @right_edge = @left_edge + 48*width
+    @bottom_edge = @top_edge + 48*height
     @board_dims = Array.new(2)
     @pieces = Array.new
     @captured = Array.new
@@ -45,6 +47,26 @@ class Board
 		px = p.get_pos[0]
 		py = p.get_pos[1]
 		@piece_icon[p.get_frame].draw(@left_edge+48*px, @top_edge+48*py, 2)
+	end
+	#draw captured pieces down the sides
+	red_row = red_col = 0
+	black_row = black_col = 0
+	for p in @captured
+		if p.owner == "red" #red case
+			@piece_icon[p.get_frame].draw(@left_edge-48*(red_col+1), @top_edge+48*red_row, 2)
+			red_row += 1
+			if red_row >= 2
+				red_col += 1
+				red_row = 0
+			end
+		else #black case
+			@piece_icon[p.get_frame].draw(@right_edge+48*black_col, @bottom_edge-48*(black_row+1), 2)
+			black_row += 1
+			if black_row >= 2
+				black_col += 1
+				black_row = 0
+			end
+		end
 	end
   end
   
