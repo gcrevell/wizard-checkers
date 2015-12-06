@@ -46,7 +46,11 @@ class Player
 			return true
 		end
 		
-		return valid_jump?(piece, location)
+		if valid_jump?(piece, location) == nil
+			return false
+		else
+			return true
+		end
 	end
 	
 	#Is this a valid jump?
