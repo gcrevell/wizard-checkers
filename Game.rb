@@ -9,26 +9,29 @@ class Game
 		@board = Board.new(8, 8)
 		#these two will hold the player and computer players soon enough
 		@player = Player.new(@board, "red", @window)
-		@computer = nil #Player.new("black")
+		@computer = Player.new(@board, "black", @window)
 		@turn = 0 #players turn at the start
 	end
 
 	#called once per frame in a loop, manages game logic
 	def play
 		#check the win condition here, and skip play input if it's true
-		if @turn == 0
-			@player.take_turn
-			#on player turns, see the player's opinion
-			#if @player.take_turn == "end"
-				#@turn = 1
-			#end
-			#print "player's turn!"
+		if @board.winner
+			#text output for victorious party here!
 		else
-			#on any other turn, it's the computer's chance to shine
-			#if @computer.take_turn == "end"
-				#@turn = 0
-			#end
-			#print "computer's turn!"
+			if @turn == 0
+				#on player turns, see the player's opinion
+				if @player.take_turn == "end"
+					@turn = 1
+				end
+				print "player's turn!"
+			else
+				#on any other turn, it's the computer's chance to shine
+				if @computer.take_turn == "end"
+					@turn = 0
+				end
+				print "computer's turn!"
+			end
 		end
 	end
 
