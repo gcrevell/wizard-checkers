@@ -17,7 +17,6 @@ class Board
     @board_dims = Array.new(2)
     @pieces = Array.new
     @captured = Array.new
-    @locations = Array.new(width)
 	#load graphics!
 	@piece_icon = Gosu::Image::load_tiles("checkers.bmp", 48, 48)
 	@board_back = Gosu::Image.new("checkerboard.bmp") #8x8 of 48x48 tiles
@@ -26,14 +25,7 @@ class Board
     @board_dims[0] = width
     @board_dims[1] = height
     puts "Creating new Board!"
-	#populate the locations (are these necessary?)
-	for i in 0...width
-		@locations[i] = Array.new(height)
-		for j in 0...height
-			@locations[i][j] = Location.new(i, j)
-		end
-	end
-	populate()
+    populate()
   end
   
   #draws the board
@@ -44,8 +36,8 @@ class Board
 	@board_back.draw(@left_edge, @top_edge, 1)
 	#loop through the pieces in the grid and draw them at their positions (x*48, y*48), offset from top-left of board sprite
 	for p in @pieces
-		px = p.get_pos[0]
-		py = p.get_pos[1]
+		px = p.get_pos.x
+		py = p.get_pos.y
 		@piece_icon[p.get_frame].draw(@left_edge+48*px, @top_edge+48*py, 2)
 	end
 	#draw captured pieces down the sides
@@ -100,6 +92,7 @@ class Board
   #checks position of a given piece
   def check_pos(piece)
     
+    
   end
   
   #captures piece
@@ -118,6 +111,8 @@ class Board
   #return the piece at a specified location, or nil if there isn't one
   def piece_at(location)
     #how does it find the piece? somehow! It just need to be able to do so
+    
+    
   end
   
   #returns captured pieces
@@ -126,7 +121,11 @@ class Board
   end
   
   def get_pieces_by_color(color)
-    #set up a filter to return only pieces that match the specified owner
+    #set up a filter to return only pieces that match the specified 
+    for p in @pieces
+      #code
+    end
+    
   end
   
 end
