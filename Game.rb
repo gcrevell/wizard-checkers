@@ -6,10 +6,10 @@ class Game
 	#called at the very start
 	def initialize (window = nil)
 		@window = window #required to track mouse input from the player
-		#these two will hold the player and computer players soon enough
-		@player = Player.new("red")
-		@computer = nil #Player.new("black")
 		@board = Board.new(8, 8)
+		#these two will hold the player and computer players soon enough
+		@player = Player.new(@board, "red", self)
+		@computer = nil #Player.new("black")
 		@turn = 0 #players turn at the start
 	end
 
