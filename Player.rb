@@ -10,7 +10,7 @@ class Player
 		@board = board
 	end
 
-	#called every frame during your turn, return "end" to end your turn
+	#called every frame during your turn, return string "end" to end your turn
 	def take_turn(number)
 		
 	end
@@ -18,7 +18,7 @@ class Player
 	#move a piece to a location, or return an error(?)
 	def make_move(piece, location)
 		if valid_move?(piece, location)
-			piece.positon = location
+			piece.set_pos(location)
 		else
 			return nil
 		end
@@ -34,26 +34,26 @@ class Player
 			return false
 		end
 		
-		if (@color == "red") && (location.y > piece.positon.y) && (piece.king == false)
+		if (@color == "red") && (location.y > piece.get_pos.y) && (piece.king == false)
 			return false
-		elsif (location.y < piece.positon.y) && (piece.king == false)
+		elsif (location.y < piece.get_pos.y) && (piece.king == false)
 			return false
 		end
 		
 		for i in 1..2
-			if (location.x + i == piece.positon.x) && (location.y + i == piece.positon.x)
+			if (location.x + i == piece.get_pos.x) && (location.y + i == piece.get_pos.x)
 				return true
 			end
 			
-			if (location.x - i == piece.positon.x) && (location.y + i == piece.positon.x)
+			if (location.x - i == piece.get_pos.x) && (location.y + i == piece.get_pos.x)
 				return true
 			end
 			
-			if (location.x + i == piece.positon.x) && (location.y - i == piece.positon.x)
+			if (location.x + i == piece.get_pos.x) && (location.y - i == piece.get_pos.x)
 				return true
 			end
 			
-			if (location.x - i == piece.positon.x) && (location.y - i == piece.positon.x)
+			if (location.x - i == piece.get_pos.x) && (location.y - i == piece.get_pos.x)
 				return true
 			end
 		end
