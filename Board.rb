@@ -88,12 +88,7 @@ class Board
   def add_piece(piece)
     @pieces << piece
   end
-  
-  #checks position of a given piece
-  def check_pos(piece)
-    
-    
-  end
+
   
   #captures piece
   def capture(piece)
@@ -122,15 +117,17 @@ class Board
   
   def get_pieces_by_owner(color)
     #set up a filter to return only pieces that match the specified
-    @pieces_by_owner = Array.new
+   
+   
+   # @pieces_by_owner = Array.new
     
-    for p in @pieces
-      if p.owner == color
-        @owner << p
-      end
-    end
+   # for p in @pieces
+   #   if p.owner == color
+   #     @owner << p
+   #   end
+   # end
     
-    return @pieces_by_owner
+    return @pieces.select{owner == color}
   end
   
 end
