@@ -127,4 +127,18 @@ class Board
     return @pieces.select{owner == color}
   end
   
+  #check win condition, if one player is out of pieces, the other one wins
+  #returns the color of the winner, or nil if not satisfied
+  def winner()
+    if @pieces.select{owner == "red"}.empty? == true
+        return "black"
+    elsif @pieces.select{owner == "black"}.empty? == true
+        return "red"
+    else
+      return nil
+    end
+      
+  end
+  
+  
 end
