@@ -106,7 +106,7 @@ class Player
 		end
 		
 		if location_at_offset?(piece, location, 2, 2)
-			ret = @board.piece(Location.new(location.x + 1, location.y + 1))
+			ret = @board.piece_at(Location.new(location.x + 1, location.y + 1))
 			
 			if ret != nil && ret.get_owner != @color
 				return ret
@@ -114,7 +114,7 @@ class Player
 		end
 		
 		if location_at_offset?(piece, location, -2, 2)
-			ret = @board.piece(Location.new(location.x - 1, location.y + 1))
+			ret = @board.piece_at(Location.new(location.x - 1, location.y + 1))
 			
 			if ret != nil && ret.get_owner != @color
 				return ret
@@ -122,7 +122,7 @@ class Player
 		end
 		
 		if location_at_offset?(piece, location, 2, -2)
-			ret = @board.piece(Location.new(location.x + 1, location.y - 1))
+			ret = @board.piece_at(Location.new(location.x + 1, location.y - 1))
 			
 			if ret != nil && ret.get_owner != @color
 				return ret
@@ -130,7 +130,7 @@ class Player
 		end
 		
 		if location_at_offset?(piece, location, -2, -2)
-			ret = @board.piece(Location.new(location.x - 1, location.y - 1))
+			ret = @board.piece_at(Location.new(location.x - 1, location.y - 1))
 			
 			if ret != nil && ret.get_owner != @color
 				return ret
