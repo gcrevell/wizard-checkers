@@ -111,9 +111,13 @@ class Player
 			return false
 		end
 		
+		if location.x < 0 || location.x >= @board.width || location.y < 0 || location.y >= @board.height
+			return false
+		end
+		
 		if (@color == "red") && (location.y > piece.get_pos.y) && (piece.king == false)
 			return false
-			elsif (location.y < piece.get_pos.y) && (piece.king == false)
+		elsif (location.y < piece.get_pos.y) && (piece.king == false)
 			return false
 		end
 		
