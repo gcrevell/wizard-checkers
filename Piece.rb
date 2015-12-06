@@ -1,4 +1,5 @@
 require 'gosu'
+require_relative 'Location'
 
 #require other libraries as needed
 
@@ -14,8 +15,7 @@ class Piece
     @king = false
     @captured = false
     #set piece position
-    @position[0] = posx
-    @position[1] = posy
+    @position = Location.new(posx, posy)
   end
   
   #change owner of the piece
@@ -34,9 +34,8 @@ class Piece
   end
   
   #change the position of the piece
-  def set_pos(posx, posy)
-    @position[0] = posx
-    @position[1] = posy
+  def set_pos(pos)
+    @position = pos
   end
   
   #retrieve the king status
