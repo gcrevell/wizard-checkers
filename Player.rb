@@ -8,11 +8,51 @@ class Player
 		@color = color
 		@window = window
 		@board = board
+		@clicked = false
+		@grabbed = nil
 	end
 	
 	#called every frame during your turn, return string "end" to end your turn
 	def take_turn(number)
-		
+		mouse_click = poll_mouse()
+		mouse_pos = mouse_over_position()
+	
+		case mouse_click
+		when "click"
+			#pick up the piece, check that it exists and is yours
+			@grabbed = @board.piece_at(mouse_pos)
+			if (@grabbed.get_owner != @color)
+				@grabbed = nil
+			end
+		when "release"
+			#drop the piece, attempt to make a move
+			make_move(@grabbed, mouse_pos)
+			@grabbed = nil
+		end
+	end
+	
+	#update the mouse condition
+	def poll_mouse()
+		mb = Gosu::button_down? Gosu::MsLeft
+		if mb and not @clicked
+			@clicked = true
+			return "click"
+		else if mb and @clicked
+			return "hold"
+		else if not mn and @clicked
+			@clicked = false
+			return "release"
+		else
+			return ""
+		end
+	end
+
+	#determine the mouse's current position
+	def mouse_over_position()
+		mx = (@window.mouse_x - @board.left_edge) / 48
+		my = (@window.mouse_y - @board.top_edge) / 48
+	   
+		return Location.new(mx, my)
 	end
 	
 	#move a piece to a location, or return an error(?)
@@ -127,5 +167,16 @@ class Player
 	#get the list of pieces in your color
 	def my_pieces()
 		return @board.get_pieces_by_owner(@color)
+	end
+	
+	#draw the piece you're holding
+	def draw()
+		if @grabbed != nil
+			#draw a translucent piece under the mouse
+			mouse_pos = mouse_over_position()
+			fade_color = Gosu::Color.argb(192, 255, 255, 255) #75% opacity
+			fade_color = Gosu::Color.argb(128, 255, 255, 255) unless valid_move?(@grabbed, mouse_pos)
+			@board.get_piece_icon(@grabbed).draw(mouse_pos.x*48-6, mouse_pos.y*48-12, 3, fade_color)
+		end
 	end
 end
