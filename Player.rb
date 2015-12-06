@@ -94,7 +94,7 @@ class Player
 		
 		if valid_jump?(piece, location) == nil
 			return false
-			else
+		else
 			return true
 		end
 	end
@@ -141,7 +141,7 @@ class Player
 	end
 	
 	def location_at_offset?(piece, location, offX, offY)
-		if (location.x + offX == piece.get_pos.x) && (location.y + offY == piece.get_pos.x)
+		if (location.x + offX == piece.get_pos.x) && (location.y + offY == piece.get_pos.y)
 			return true
 		end
 		
@@ -167,7 +167,7 @@ class Player
 		
 		if (@color == "red") && (location.y > piece.get_pos.y) && (piece.is_king == false)
 			return false
-		elsif (location.y < piece.get_pos.y) && (piece.is_king == false)
+		elsif (@color != "red") && (location.y < piece.get_pos.y) && (piece.is_king == false)
 			return false
 		end
 		
