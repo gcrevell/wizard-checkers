@@ -7,8 +7,8 @@ class Game
 	def initialize (window = nil)
 		@window = window #required to track mouse input from the player
 		#these two will hold the player and computer players soon enough
-		@player = nil
-		@computer = nil
+		@player = Player.new("red")
+		@computer = nil #Player.new("black")
 		@board = Board.new(8, 8)
 		@turn = 0 #players turn at the start
 	end
@@ -17,6 +17,7 @@ class Game
 	def play
 		#check the win condition here, and skip play input if it's true
 		if @turn == 0
+			@player.take_turn
 			#on player turns, see the player's opinion
 			#if @player.take_turn == "end"
 				#@turn = 1
