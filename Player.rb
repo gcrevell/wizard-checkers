@@ -16,15 +16,16 @@ class Player
 	def take_turn(number)
 		mouse_click = poll_mouse()
 		mouse_pos = mouse_over_position()
-	
+		
 		case mouse_click
-		when "click"
+			when "click"
 			#pick up the piece, check that it exists and is yours
 			@grabbed = @board.piece_at(mouse_pos)
 			if (@grabbed.get_owner != @color)
 				@grabbed = nil
 			end
-		when "release"
+			
+			when "release"
 			#drop the piece, attempt to make a move
 			make_move(@grabbed, mouse_pos)
 			@grabbed = nil
@@ -37,21 +38,21 @@ class Player
 		if mb and not @clicked
 			@clicked = true
 			return "click"
-		else if mb and @clicked
+		elsif mb and @clicked
 			return "hold"
-		else if not mn and @clicked
+		elsif not mn and @clicked
 			@clicked = false
 			return "release"
 		else
 			return ""
 		end
 	end
-
+	
 	#determine the mouse's current position
 	def mouse_over_position()
 		mx = (@window.mouse_x - @board.left_edge) / 48
 		my = (@window.mouse_y - @board.top_edge) / 48
-	   
+		
 		return Location.new(mx, my)
 	end
 	
@@ -88,7 +89,7 @@ class Player
 		
 		if valid_jump?(piece, location) == nil
 			return false
-		else
+			else
 			return true
 		end
 	end
@@ -157,7 +158,7 @@ class Player
 		
 		if (@color == "red") && (location.y > piece.get_pos.y) && (piece.king == false)
 			return false
-		elsif (location.y < piece.get_pos.y) && (piece.king == false)
+			elsif (location.y < piece.get_pos.y) && (piece.king == false)
 			return false
 		end
 		
