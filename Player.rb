@@ -19,7 +19,7 @@ class Player
 	def make_move(piece, location)
 		if valid_move?(piece, location)
 			piece.set_pos(location)
-			else
+		else
 			return nil
 		end
 	end
