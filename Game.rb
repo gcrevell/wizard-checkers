@@ -8,7 +8,7 @@ class Game
 		@window = window #required to track mouse input from the player
 		@board = Board.new(8, 8)
 		#these two will hold the player and computer players soon enough
-		@player = Player.new(@board, "red", self)
+		@player = Player.new(@board, "red", @window)
 		@computer = nil #Player.new("black")
 		@turn = 0 #players turn at the start
 	end

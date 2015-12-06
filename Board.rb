@@ -7,6 +7,9 @@ require_relative 'Location'
 #Board class.  Establishes board properties, getters and setters.
 
 class Board
+  attr_reader :top_edge
+  attr_reader :left_edge
+
   #constructor
   def initialize(width=8, height=8)
     #define the attributes

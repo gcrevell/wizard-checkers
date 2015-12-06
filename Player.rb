@@ -13,7 +13,7 @@ class Player
 	end
 	
 	#called every frame during your turn, return string "end" to end your turn
-	def take_turn(number)
+	def take_turn()
 		mouse_click = poll_mouse()
 		mouse_pos = mouse_over_position()
 		
@@ -21,7 +21,7 @@ class Player
 			when "click"
 			#pick up the piece, check that it exists and is yours
 			@grabbed = @board.piece_at(mouse_pos)
-			if (@grabbed.get_owner != @color)
+			if @grabbed != nil and @grabbed.get_owner != @color
 				@grabbed = nil
 			end
 			
@@ -40,7 +40,7 @@ class Player
 			return "click"
 		elsif mb and @clicked
 			return "hold"
-		elsif not mn and @clicked
+		elsif not mb and @clicked
 			@clicked = false
 			return "release"
 		else
@@ -144,6 +144,10 @@ class Player
 	end
 	
 	def valid?(piece, location)
+		if piece == nil || location == nil
+			return false
+		end
+		
 		if piece.get_owner() == @color
 			return false
 		end
