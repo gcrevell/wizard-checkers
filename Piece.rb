@@ -11,7 +11,6 @@ class Piece
   def initialize (posx=0, posy=0, owner=nil)
     #define properties that exist
     @owner = owner
-    @position = Array.new(2)
     @king = false
     @captured = false
     #set piece position
