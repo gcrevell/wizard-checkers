@@ -88,12 +88,7 @@ class Board
   def add_piece(piece)
     @pieces << piece
   end
-  
-  #checks position of a given piece
-  def check_pos(piece)
-    
-    
-  end
+
   
   #captures piece
   def capture(piece)
@@ -110,8 +105,14 @@ class Board
   
   #return the piece at a specified location, or nil if there isn't one
   def piece_at(location)
-    #how does it find the piece? somehow! It just need to be able to do so
     
+    for p in @pieces
+      if ((p.get_pos.x == location.x) && (p.get_pos.y == location.y))
+        return p
+      end
+    end
+    
+    return nil
     
   end
   
@@ -122,15 +123,8 @@ class Board
   
   def get_pieces_by_owner(color)
     #set up a filter to return only pieces that match the specified
-    @pieces_by_owner = Array.new
     
-    for p in @pieces
-      if p.owner == color
-        @owner << p
-      end
-    end
-    
-    return @pieces_by_owner
+    return @pieces.select{owner == color}
   end
   
 end
