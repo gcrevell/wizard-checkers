@@ -14,6 +14,7 @@ class Player
 	
 	#called every frame during your turn, return string "end" to end your turn
 	def take_turn()
+		#puts "taking turn"
 		mouse_click = poll_mouse()
 		mouse_pos = mouse_over_position()
 		
@@ -32,7 +33,10 @@ class Player
 			when "release"
 			#drop the piece, attempt to make a move
 			puts valid_move?(@grabbed, mouse_pos)
-			make_move(@grabbed, mouse_pos)
+			if make_move(@grabbed, mouse_pos)
+				@grabbed = nil
+				return "end"
+			end
 			@grabbed = nil
 		end
 	end
@@ -64,19 +68,23 @@ class Player
 	#move a piece to a location, or return an error(?)
 	def make_move(piece, location)
 		if valid_move?(piece, location)
-			if valid_jump?(piece, location) != nil
-				valid_jump?(piece, location).change_capture(true)
+			jumped = valid_jump?(piece, location)
+			if jumped != nil
+				puts "jumped"
+				jumped.change_capture(true)
+				@board.capture(jumped)
 			end
 			
 			piece.set_pos(location)
 			
 			if (@color == "red") && (location.y == 0)
 				piece.change_king(true)
-			elsif (@color != "red") && (location.y == board.dimensions[1] - 1)
+			elsif (@color != "red") && (location.y == @board.dimensions[1] - 1)
 				piece.change_king(true)
 			end
+			return true
 		else
-			return nil
+			return false
 		end
 	end
 	

@@ -15,6 +15,8 @@ class Game
 
 	#called once per frame in a loop, manages game logic
 	def play
+		#puts "turn is #{@turn}"
+		#puts "and the winner is #{@board.winner}"
 		#check the win condition here, and skip play input if it's true
 		if @board.winner
 			#text output for victorious party here!
@@ -24,13 +26,13 @@ class Game
 				if @player.take_turn == "end"
 					@turn = 1
 				end
-				print "player's turn!"
+				#print "player's turn!"
 			else
 				#on any other turn, it's the computer's chance to shine
 				if @computer.take_turn == "end"
 					@turn = 0
 				end
-				print "computer's turn!"
+				#print "computer's turn!"
 			end
 		end
 	end
@@ -39,6 +41,7 @@ class Game
 	def draw
 		@board.draw
 		#draw player scoring or something here?
+		play
 		@player.draw
 	end
 end

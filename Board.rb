@@ -47,7 +47,7 @@ class Board
 	red_row = red_col = 0
 	black_row = black_col = 0
 	for p in @captured
-		if p.owner == "red" #red case
+		if p.get_owner == "red" #red case
 			@piece_icon[p.get_frame].draw(@left_edge-48*(red_col+1), @top_edge+48*red_row, 2)
 			red_row += 1
 			if red_row >= 2
@@ -138,9 +138,9 @@ class Board
   #check win condition, if one player is out of pieces, the other one wins
   #returns the color of the winner, or nil if not satisfied
   def winner()
-    if @pieces.select{owner == "red"}.empty? == true
+    if @pieces.select{|p| p.get_owner == "red"}.empty? == true
         return "black"
-    elsif @pieces.select{owner == "black"}.empty? == true
+    elsif @pieces.select{|p| p.get_owner == "black"}.empty? == true
         return "red"
     else
       return nil
