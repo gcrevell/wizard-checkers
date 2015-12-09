@@ -64,7 +64,17 @@ class Player
 	#move a piece to a location, or return an error(?)
 	def make_move(piece, location)
 		if valid_move?(piece, location)
+			if valid_jump?(piece, location) != nil
+				valid_jump?(piece, location).change_capture(true)
+			end
+			
 			piece.set_pos(location)
+			
+			if (@color == "red") && (location.y == 0)
+				piece.change_king(true)
+			elsif (@color != "red") && (location.y == board.dimensions[1] - 1)
+				piece.change_king(true)
+			end
 		else
 			return nil
 		end
