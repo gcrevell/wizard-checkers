@@ -132,7 +132,7 @@ class Board
   def get_pieces_by_owner(color)
     #set up a filter to return only pieces that match the specified
     
-    return @pieces.select{owner == color}
+    return @pieces.select{|p| p.get_owner == color}
   end
   
   #check win condition, if one player is out of pieces, the other one wins
