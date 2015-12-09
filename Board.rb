@@ -74,7 +74,7 @@ class Board
     #create the black piece along the top
 	for i in 0...@board_dims[0]
 		#for j in 0...3
-		for j in 2...3
+		for j in 0...3
 			#only populate black squares, which start at 0, 0
 			if (i+j)%2 == 0
 				add_piece(Piece.new(i, j, "black"))
