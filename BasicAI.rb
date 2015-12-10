@@ -88,10 +88,10 @@ class BasicAI < Player
 			cnt = cnt + 2
 		end
 		
-		if (@color == "red") && (l.y == 0)
+		if (@color == "red") && (l.y == 0) && (p.is_king == false)
 			#its a king move!
 			cnt = cnt + 1
-		elsif (@color != "red") && (l.y == @board.dimensions[1] - 1)
+		elsif (@color != "red") && (l.y == @board.dimensions[1] - 1) && (p.is_king == false)
 			#also a king move!
 			cnt = cnt + 1
 		end
