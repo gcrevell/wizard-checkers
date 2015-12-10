@@ -26,7 +26,3 @@ class GameWindow < Gosu::Window
 		true
 	end
 end
-
-#run the game!
-window = GameWindow.new
-window.show

@@ -1,7 +1,8 @@
 require 'gosu'
 require_relative 'Board'
 require_relative 'Player'
-require_relative 'BasicAI'
+#require_relative 'BasicAI'
+require_relative 'WizardAI'
 
 class Game
 	#called at the very start
@@ -10,7 +11,8 @@ class Game
 		@board = Board.new(8, 8)
 		#these two will hold the player and computer players soon enough
 		@player = Player.new(@board, "red", @window)
-		@computer = BasicAI.new(@board, "black", @window)
+		#@computer = BasicAI.new(@board, "black", @window)
+		@computer = WizardAI.new(@board, "black", @window)
 		@turn = 0 #players turn at the start
 
 		@title = Gosu::Font.new(50)
