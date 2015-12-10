@@ -48,18 +48,18 @@ class Board
 	black_row = black_col = 0
 	for p in @captured
 		if p.get_owner == "red" #red case
-			@piece_icon[p.get_frame].draw(@left_edge-48*(red_col+1), @top_edge+48*red_row, 2)
-			red_row += 1
-			if red_row >= 2
-				red_col += 1
-				red_row = 0
+			@piece_icon[p.get_frame].draw(@left_edge-48*(red_col+1)-12, @top_edge+48*red_row-6, 2)
+			red_col += 1
+			if red_col >= 2
+				red_row += 1
+				red_col = 0
 			end
 		else #black case
-			@piece_icon[p.get_frame].draw(@right_edge+48*black_col, @bottom_edge-48*(black_row+1), 2)
-			black_row += 1
-			if black_row >= 2
-				black_col += 1
-				black_row = 0
+			@piece_icon[p.get_frame].draw(@right_edge+48*black_col+12, @bottom_edge-48*(black_row+1)+6, 2)
+			black_col += 1
+			if black_col >= 2
+				black_row += 1
+				black_col = 0
 			end
 		end
 	end
