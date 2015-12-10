@@ -13,6 +13,10 @@ class LegalMove
 		@location = loc
 		@count = cnt
 	end
+	
+	def to_s
+		return "Count: #{@count}, "
+	end
 end
 
 class BasicAI < Player
@@ -34,35 +38,39 @@ class BasicAI < Player
 				if valid_move?(p, l)
 					#There is a valid move down and right 1 or 2 spaces
 					legal << LegalMove.new(p, l, computePriority(p, l))
+					puts computePriority(p, l)
 				end
 				
 				l = Location.new(p.get_pos.x - i, p.get_pos.y + i)
 				if valid_move?(p, l)
 					#There is a valid move down and left 1 or 2 spaces
 					legal << LegalMove.new(p, l, computePriority(p, l))
+					puts computePriority(p, l)
 				end
 				
 				l = Location.new(p.get_pos.x + i, p.get_pos.y - i)
 				if valid_move?(p, l)
 					#There is a valid move up and right 1 or 2 spaces
 					legal << LegalMove.new(p, l, computePriority(p, l))
+					puts computePriority(p, l)
 				end
 				
 				l = Location.new(p.get_pos.x - i, p.get_pos.y - i)
 				if valid_move?(p, l)
 					#There is a valid move up and left 1 or 2 spaces
 					legal << LegalMove.new(p, l, computePriority(p, l))
+					puts computePriority(p, l)
 				end
 			end
 		end
 		
 		#legal has all legal moves I can make...
-		for i in 1..4#(4).downto(1)
+		for i in (4).downto(1)
 			max = legal.select{|lm| lm.count == i}
 			if max.empty? == false
 				#Theres moves to make. make them.
 				#choose random move and make it
-				move = legal.sample
+				move = max.sample
 				make_move(move.piece, move.location)
 				return "end"
 			end
