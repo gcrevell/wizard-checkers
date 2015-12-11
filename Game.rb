@@ -14,6 +14,7 @@ class Game
 		#@computer = BasicAI.new(@board, "black", @window)
 		@computer = WizardAI.new(@board, "black", @window)
 		@turn = 0 #players turn at the start
+		puts "player starts"
 
 		@title = Gosu::Font.new(50)
 		@subtitle = Gosu::Font.new(20)
@@ -22,8 +23,6 @@ class Game
 
 	#called once per frame in a loop, manages game logic
 	def play
-		#puts "turn is #{@turn}"
-		#puts "and the winner is #{@board.winner}"
 		#check the win condition here, and skip play input if it's true
 		if @board.winner
 			@scroll += 2 unless @scroll > 200
@@ -32,11 +31,13 @@ class Game
 				#on player turns, see the player's opinion
 				if @player.take_turn == "end"
 					@turn = 1
+					puts "computer turn"
 				end
 			else
 				#on any other turn, it's the computer's chance to shine
 				if @computer.take_turn == "end"
 					@turn = 0
+					puts "player turn"
 				end
 			end
 		end
@@ -46,6 +47,7 @@ class Game
 	def draw
 		@board.draw
 		@player.draw
+		@computer.draw
 		if @board.winner == "red"
 			#text output for victorious party here!
 			@title.draw("YOU WON!", 215, @scroll, 10, 1.0, 1.0, 0xff_FD0000)

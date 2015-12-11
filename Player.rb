@@ -25,15 +25,14 @@ class Player
 			if @grabbed != nil and @grabbed.get_owner != @color
 				@grabbed = nil
 			end
-			puts "nil" if @grabbed == nil
-			puts @grabbed unless @grabbed == nil
-			puts mouse_pos.x
-			puts mouse_pos.y
 			
 			when "release"
 			#drop the piece, attempt to make a move
 			puts valid_move?(@grabbed, mouse_pos)
 			if make_move(@grabbed, mouse_pos)
+				puts @grabbed
+				puts mouse_pos.x
+				puts mouse_pos.y
 				@grabbed = nil
 				return "end"
 			end
